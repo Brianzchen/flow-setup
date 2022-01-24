@@ -61,3 +61,13 @@ Although some sections support key-value pairs, using strings allow for more uni
   ]
 }
 ```
+
+## Contributions
+
+### Enhancing the tool
+
+This tool is pretty simple but if you'd like to add more features please submit an issue and we can chat about it.
+
+### Adding configs
+
+If you don't want to start a repo and would like to add your config here please feel free to create a pull request with a new config with a name of your choice.

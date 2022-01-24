@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // @flow
 
+const fs = require('fs');
 const yargs = require('yargs');
 const { hideBin } = require('yargs/helpers');
 const rootPath = require('app-root-path');
@@ -44,14 +45,20 @@ const configName = argv._[0] || 'recommended';
     console.log('You have used an invalid config name');
     process.exit(1);
   } else {
-    const sections = ['ignore', 'includes', 'libs', 'lints', 'options', 'strict'];
+    const sections = ['ignore', 'include', 'libs', 'lints', 'options', 'strict'];
     let flowconfig = '';
 
     sections.forEach((section) => {
       flowconfig = `${flowconfig}[${section}]\n${([...(config[section] || []), '']).join('\n')}\n`;
     });
+    flowconfig = flowconfig.substring(0, flowconfig.length - 1);
 
-    console.log(flowconfig);
+    fs.writeFile(`${rootPath}/.flowconfig`, flowconfig, (err) => {
+      if (err) {
+        console.error(err);
+        process.exit(1);
+      }
+    });
   }
 })();
 

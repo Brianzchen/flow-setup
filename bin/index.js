@@ -14,16 +14,17 @@ const libraryJson = require('../configs/library.json');
 const recommendedJson = require('../configs/recommended.json');
 
 const argv = yargs(hideBin(process.argv)).argv;
-
 const configName = argv._[0] || 'recommended';
+const { owner = 'brianzchen', repo = 'flow-setup', path = 'configs' } = argv;
+const base = argv.base !== 'false';
 
 (async () => {
   const config = await (async () => {
     const octokit = new Octokit();
     const configs/*: { [key: string]: string }*/ = (await octokit.repos.getContent({
-      owner: 'brianzchen',
-      repo: 'flow-setup',
-      path: 'configs',
+      owner,
+      repo,
+      path,
     })).data.reduce((acc, cur) => {
       return {
         ...acc,
@@ -32,7 +33,7 @@ const configName = argv._[0] || 'recommended';
     }, { ...null });
 
     if (configs[configName]) {
-      const baseJson = configName !== 'base' && (await axios.get(configs.base)).data;
+      const baseJson = base && configName !== 'base' && (await axios.get(configs.base)).data;
       const mergeJson = (await axios.get(configs[configName])).data;
       if (baseJson) {
         return deepmerge(baseJson, mergeJson);
@@ -45,7 +46,7 @@ const configName = argv._[0] || 'recommended';
     console.log('You have used an invalid config name');
     process.exit(1);
   } else {
-    const sections = ['ignore', 'include', 'libs', 'lints', 'options', 'strict'];
+    const sections = ['ignore', 'include', 'untyped', 'libs', 'lints', 'options', 'strict', 'version', 'declarations'];
     let flowconfig = '';
 
     sections.forEach((section) => {

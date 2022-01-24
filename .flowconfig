@@ -10,6 +10,8 @@
 
 [include]
 
+[untyped]
+
 [libs]
 
 [lints]
@@ -24,3 +26,7 @@ exact_by_default=true
 include_warnings=true
 
 [strict]
+
+[version]
+
+[declarations]

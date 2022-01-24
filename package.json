@@ -1,0 +1,21 @@
+{
+  "name": "flow-setup",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:Brianzchen/flow-setup.git",
+  "license": "MIT",
+  "bin": {
+    "flow-setup": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "node ./bin/index.js"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.169.0"
+  },
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "deepmerge": "^4.2.2",
+    "yargs": "^17.3.1"
+  }
+}

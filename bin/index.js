@@ -9,14 +9,9 @@ const deepmerge = require('deepmerge');
 const { Octokit } = require('@octokit/rest');
 const axios = require('axios');
 
-const baseJson = require('../configs/base.json');
-const libraryJson = require('../configs/library.json');
-const recommendedJson = require('../configs/recommended.json');
-
 const argv = yargs(hideBin(process.argv)).argv;
 const configName = argv._[0] || 'recommended';
 const { owner = 'brianzchen', repo = 'flow-setup', path = 'configs' } = argv;
-const base = argv.base !== 'false';
 
 (async () => {
   const config = await (async () => {
@@ -32,14 +27,16 @@ const base = argv.base !== 'false';
       };
     }, { ...null });
 
-    if (configs[configName]) {
-      const baseJson = base && configName !== 'base' && (await axios.get(configs.base)).data;
-      const mergeJson = (await axios.get(configs[configName])).data;
-      if (baseJson) {
+    const getMergedJson = async (name) => {
+      const mergeJson = (await axios.get(configs[name])).data;
+      if (mergeJson.extends) {
+        const baseJson = await getMergedJson(mergeJson.extends);
         return deepmerge(baseJson, mergeJson);
       }
       return mergeJson;
-    }
+    };
+
+    return await getMergedJson(configName);
   })();
 
   if (!config) {

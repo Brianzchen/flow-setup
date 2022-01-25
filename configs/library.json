@@ -1,4 +1,5 @@
 {
+  "extends": "base",
   "lints": [
     "ambiguous-object-type=error"
   ]

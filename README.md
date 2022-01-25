@@ -10,21 +10,19 @@ npx flow-setup [configName] [...options]
 # eg
 npx flow-setup
 npx flow-setup library
-npx flow-setup recommended --base=false
 npx flow-setup foo --owner=bar --repo=blah
 ```
 
-By default this tool pulls configs from this repo but if you want to have something custom and don't want to contribute you can create your own public repo **without** forking this tool with the **Options** guide below.
+By default this tool pulls configs from this repo but if you want to have something custom and don't want to contribute, you can create your own public repo **without** forking this tool with the **Options** guide below.
 
 ## API
 
 ### `configName` (Optional)
 
-This is the name of the json file inside your config dir path that will be pulled, by default it will be looking for the file `recommended.json` with a `base.json` unless `--base=false` is specified.
+This is the name of the json file inside your config dir path that will be pulled, by default it will be looking for the file `recommended.json` if you don't specify anything.
 
 ### Options
 
-- `base`: *(default: true)* When pulling a config whether it should merge with a base json that can keep reused settings up to date across multiple configs
 - `owner`: *(default: brianzchen)* The github owner for url pathing
 - `repo`: *(default: flow-setup)* The github repo for url pathing
 - `path`: *(default: configs)* The directory of the configs in the repo
@@ -35,9 +33,12 @@ Configs are just json files with properties that represent the various sections 
 
 Although some sections support key-value pairs, using strings allow for more universal compatibility for row values.
 
+The config also supports a special `extends` property that takes a string, this will match to another config that your current config will merge with. Multiple configs can be merged recursively as one extends another.
+
 **Sample**
 ```sh
 {
+  "extends": "base",
   "ignore": [
     ".*node_modules/.*",
     "!.*node_modules/react-native/.*",

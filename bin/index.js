@@ -51,7 +51,7 @@ const { owner = 'brianzchen', repo = 'flow-setup', path = 'configs' } = argv;
     });
     flowconfig = flowconfig.substring(0, flowconfig.length - 1);
 
-    fs.writeFile(`${rootPath}/.flowconfig`, flowconfig, (err) => {
+    fs.writeFile('./.flowconfig', flowconfig, (err) => {
       if (err) {
         console.error(err);
         process.exit(1);

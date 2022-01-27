@@ -15,6 +15,7 @@
     "unnecessary-optional-chain=error"
   ],
   "options": [
+    "enums=true",
     "format.bracket_spacing=true",
     "format.single_quotes=true",
     "exact_by_default=true",

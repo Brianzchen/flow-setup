@@ -1,6 +1,7 @@
 {
   "extends": "library",
   "libs": [
-    "definition.js"
+    "definition.js",
+    "../definitions/__util__"
   ]
 }

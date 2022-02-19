@@ -1,5 +1,8 @@
 {
   "extends": "base",
+  "ignore": [
+    ".*dist/.*"
+  ],
   "lints": [
     "ambiguous-object-type=error"
   ]

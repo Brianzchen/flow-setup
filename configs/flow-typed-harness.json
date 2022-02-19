@@ -1,0 +1,6 @@
+{
+  "extends": "library",
+  "libs": [
+    "definition.js"
+  ]
+}

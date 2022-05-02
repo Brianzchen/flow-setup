@@ -8,7 +8,8 @@
     "!.*node_modules/tiny-invariant/.*",
     "!.*node_modules/key-commander/.*",
     "!.*node_modules/react-ld/.*",
-    "!.*node_modules/recoil/.*"
+    "!.*node_modules/recoil/.*",
+    "!.*node_modules/startown/.*"
   ],
   "lints": [
     "deprecated-type=error",

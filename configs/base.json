@@ -13,7 +13,6 @@
   ],
   "lints": [
     "deprecated-type=error",
-    "deprecated-utility=error",
     "unnecessary-optional-chain=error"
   ],
   "options": [

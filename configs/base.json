@@ -5,12 +5,12 @@
     ".*node_modules/react-native/Libraries/polyfills/.*",
     "!.*node_modules/@.*",
     ".*/malformed_package_json/package.json",
+    "!.*node_modules/bzc-ui/.*",
     "!.*node_modules/date-fns/.*",
     "!.*node_modules/tiny-invariant/.*",
     "!.*node_modules/key-commander/.*",
     "!.*node_modules/react-ld/.*",
-    "!.*node_modules/recoil/.*",
-    "!.*node_modules/startown/.*"
+    "!.*node_modules/recoil/.*"
   ],
   "lints": [
     "deprecated-type=error",

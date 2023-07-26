@@ -1,7 +1,9 @@
 # flow-setup
 Always confused with all the config settings you need to have flow setup for a new project?
 
-`flow-setup` is a simple no-install tool that will generate a `.flowconfig` for you based on a config file anywhere on github. Great for when you're managing multiple projects you want to keep up to date.
+`flow-setup` is a simple no-install tool that will install flow on your project plus create all necessary config files.
+
+A `.flowconfig` in particular will be created for you based on your needs. Great for when you're managing multiple projects you want to keep up to date. This can be configured to pull config files anywhere on github but by default comes from https://github.com/Brianzchen/flow-setup/tree/master/configs
 
 ## Usage
 
@@ -26,6 +28,8 @@ This is the name of the json file inside your config dir path that will be pulle
 - `owner`: *(default: brianzchen)* The github owner for url pathing
 - `repo`: *(default: flow-setup)* The github repo for url pathing
 - `path`: *(default: configs)* The directory of the configs in the repo
+
+> You do not need to reference the branch as `flow-setup` reads from the default branch
 
 ### Creating configs
 

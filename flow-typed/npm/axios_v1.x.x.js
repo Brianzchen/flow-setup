@@ -1,5 +1,5 @@
-// flow-typed signature: d916d338c73b0c8be883428014d83768
-// flow-typed version: f1a5aec675/axios_v0.25.x/flow_>=v0.83.x
+// flow-typed signature: eb96baf7cd9ad23be5a0d66726bb6cc3
+// flow-typed version: 6eda30e263/axios_v1.x.x/flow_>=v0.201.x
 
 declare module 'axios' {
   import type { Agent as HttpAgent } from 'http';
@@ -20,11 +20,6 @@ declare module 'axios' {
     protocol?: string,
   |};
 
-  declare class Cancel {
-    constructor(message?: string): Cancel;
-    message: string;
-  }
-
   declare type Canceler = (message?: string) => void;
 
   declare type CancelTokenSource = {|
@@ -35,8 +30,8 @@ declare module 'axios' {
   declare class CancelToken {
     constructor(executor: (cancel: Canceler) => void): void;
     static source(): CancelTokenSource;
-    promise: Promise<Cancel>;
-    reason?: Cancel;
+    promise: Promise<Cancel<mixed>>;
+    reason?: Cancel<mixed>;
     throwIfRequested(): void;
   }
 
@@ -106,7 +101,7 @@ declare module 'axios' {
     ...
   };
 
-  declare type AxiosXHRConfigShape<T, R = T> = $Shape<AxiosXHRConfig<T, R>>;
+  declare type AxiosXHRConfigShape<T, R = T> = Partial<AxiosXHRConfig<T, R>>;
 
   declare type AxiosXHR<T, R = T> = {|
     config: AxiosXHRConfig<T, R>,
@@ -192,11 +187,30 @@ declare module 'axios' {
   }
 
   declare class AxiosError<T, R = T> extends Error {
+    static ERR_NETWORK: string;
+    static ERR_BAD_OPTION_VALUE: string;
+    static ERR_BAD_OPTION: string;
+    static ECONNABORTED: string;
+    static ETIMEDOUT: string;
+    static ERR_NETWORK: string;
+    static ERR_FR_TOO_MANY_REDIRECTS: string;
+    static ERR_DEPRECATED: string;
+    static ERR_BAD_RESPONSE: string;
+    static ERR_BAD_REQUEST: string;
+    static ERR_CANCELED: string;
+
     config: AxiosXHRConfig<T, R>;
     request?: http$ClientRequest<> | XMLHttpRequest;
     response?: AxiosXHR<T, R>;
     code?: string;
     isAxiosError: boolean;
+    status?: string;
+  }
+
+  declare class CanceledError<T> extends AxiosError<T> {
+  }
+
+  declare class Cancel<T> extends AxiosError<T> {
   }
 
   declare interface AxiosExport extends Axios {
@@ -205,12 +219,18 @@ declare module 'axios' {
       config?: AxiosXHRConfigShape<T, R>
     ): AxiosPromise<T, R>;
     Axios: typeof Axios;
+    AxiosError: typeof AxiosError;
+    CanceledError: typeof CanceledError;
     Cancel: typeof Cancel;
     CancelToken: typeof CancelToken;
     isCancel(value: mixed): boolean;
     create<T, R>(config?: AxiosXHRConfigBase<T, R>): Axios;
     all: typeof Promise.all;
     spread<T, R>(callback: (...args: T) => R): (array: T) => R;
+    toFormData: (
+      obj: { [key: string]: any, ... },
+      formData?: FormData,
+    ) => FormData;
   }
 
   declare type $AxiosXHRConfigBase<T, R = T> = AxiosXHRConfigBase<T, R>;

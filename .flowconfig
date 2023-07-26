@@ -3,10 +3,13 @@
 !.*node_modules/react-native/.*
 .*node_modules/react-native/Libraries/polyfills/.*
 !.*node_modules/@.*
+.*/malformed_package_json/package.json
+!.*node_modules/bzc-ui/.*
 !.*node_modules/date-fns/.*
 !.*node_modules/tiny-invariant/.*
 !.*node_modules/key-commander/.*
 !.*node_modules/react-ld/.*
+!.*node_modules/recoil/.*
 
 [include]
 
@@ -16,10 +19,10 @@
 
 [lints]
 deprecated-type=error
-deprecated-utility=error
 unnecessary-optional-chain=error
 
 [options]
+enums=true
 format.bracket_spacing=true
 format.single_quotes=true
 exact_by_default=true

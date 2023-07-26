@@ -92,6 +92,8 @@ const installFlowBin = () => {
         console.error(err);
         process.exit(1);
       }
+
+      console.info('Done!')
     });
   }
 })();

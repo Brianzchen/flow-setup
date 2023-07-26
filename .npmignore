@@ -1,3 +1,5 @@
 configs/
 flow-typed/
 .flowconfig
+flow-typed.config.json
+pnpm-lock.yaml

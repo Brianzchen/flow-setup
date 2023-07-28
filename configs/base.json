@@ -6,6 +6,7 @@
     "!.*node_modules/@.*",
     ".*/malformed_package_json/package.json",
     "!.*node_modules/bzc-ui/.*",
+    "!.*node_modules/csstype/.*",
     "!.*node_modules/date-fns/.*",
     "!.*node_modules/tiny-invariant/.*",
     "!.*node_modules/key-commander/.*",

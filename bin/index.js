@@ -2,6 +2,7 @@
 // @flow
 /*::
 import { type Argv } from 'yargs';
+import type { FlowSetupConfigsT } from '../src/types';
 */
 
 const fs = require('fs');
@@ -16,14 +17,6 @@ const axios = require('axios');
 const argv/*: Argv*/ = (yargs(hideBin(process.argv)).argv/*: any*/);
 const configName = argv._[0] || 'recommended';
 const { owner = 'brianzchen', repo = 'flow-setup', path = 'configs' } = argv;
-
-/*::
-type FlowSetupConfigsT = {
-  extends?: 'string',
-  // A key value pair of config type and their respective rules
-  [key: string]: Array<string>,
-};
-*/
 
 const installFlowBin = () => {
   const usingYarn = fs.existsSync('./yarn.lock');

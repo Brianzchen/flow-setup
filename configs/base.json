@@ -22,6 +22,7 @@
     "format.bracket_spacing=true",
     "format.single_quotes=true",
     "exact_by_default=true",
-    "include_warnings=true"
+    "include_warnings=true",
+    "module.name_mapper='^@compiled/react$' -> '@compiled/react/src/index.js'"
   ]
 }

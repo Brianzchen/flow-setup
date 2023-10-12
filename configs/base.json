@@ -12,6 +12,7 @@
     "!.*node_modules/key-commander/.*",
     "!.*node_modules/react-ld/.*",
     "!.*node_modules/recoil/.*"
+    "!.*node_modules/hermes-parser/.*"
   ],
   "lints": [
     "deprecated-type=error",
